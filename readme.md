@@ -34,9 +34,9 @@ gaming_project/
 └── lotto/
     ├── __init__.py
     ├── app.py
-    ├── lotto_play.py
     ├── lotto_auto.py
     ├── lotto_manual.py
+   ├── lotto_semi_auto.py
     └── lotto_records.py
 ```
 
@@ -63,9 +63,9 @@ Project
 │   ├── updown_ranking.py
 │   ├── hangman_play.py
 │   ├── hangman_ranking.py
-│   ├── lotto_play.py
 │   ├── lotto_auto.py
 │   ├── lotto_manual.py
+│   ├── lotto_semi_auto.py
 │   └── lotto_records.py
 │
 │       ↓
@@ -466,9 +466,9 @@ ID       : admin
 lotto/
 ├── __init__.py
 ├── app.py
-├── lotto_play.py
 ├── lotto_auto.py
 ├── lotto_manual.py
+├── lotto_semi_auto.py
 └── lotto_records.py
 ```
 
@@ -481,9 +481,11 @@ lotto/
                      LOTTO
 ==================================================
 
-1. 게임 시작
-2. 기록 보기
-3. 메인 메뉴
+1. 자동 번호
+2. 수동 번호
+3. 반자동 번호
+4. 번호 이력 보기
+5. 메인 메뉴
 
 선택 :
 ```
@@ -493,43 +495,19 @@ lotto/
 ```text
 lotto/app.py
 │
-├── 1. 게임 시작
-│      ↓
-│   lotto_play.py
-│      │
-│      ├── 1. 자동 번호
-│      │      ↓
-│      │   lotto_auto.py
-│      │
-│      └── 2. 수동 번호
-│             ↓
-│          lotto_manual.py
+├── 1. 자동 번호 → lotto_auto.py
 │
-├── 2. 기록 보기
+├── 2. 수동 번호 → lotto_manual.py
+│
+├── 3. 반자동 번호 → lotto_semi_auto.py
+│
+├── 4. 번호 이력 보기
 │      ↓
 │   lotto_records.py
 │
-└── 3. 메인 메뉴
+└── 5. 메인 메뉴
        ↓
      main.py
-```
-
----
-
-## LOTTO 게임 시작
-
-`lotto_play.py`는 로또 게임의 세부 기능을 직접 모두 처리하기보다는
-자동/수동 기능을 연결한다.
-
-```text
-lotto_play.py
-      │
-      ├──────────────┐
-      ▼              ▼
-자동 번호          수동 번호
-      │              │
-      ▼              ▼
-lotto_auto.py    lotto_manual.py
 ```
 
 ---
@@ -549,6 +527,27 @@ lotto_auto.py    lotto_manual.py
    ↓
 사용자 기록 저장
 ```
+
+---
+
+## 반자동 번호
+
+`lotto_semi_auto.py`
+
+```text
+원하는 번호 입력
+   ↓
+0 입력
+   ↓
+남은 번호 자동 생성
+   ↓
+번호 정렬
+   ↓
+사용자 기록 저장
+```
+
+사용자가 원하는 번호를 입력하다가 `0`을 입력하면,
+입력한 번호를 제외한 나머지 번호를 자동으로 생성한다.
 
 ---
 
@@ -644,10 +643,10 @@ admin     수동      1, 7, 15, 22, 33, 41
 | `hangman/app.py`             | 행맨 메뉴 및 흐름      |
 | `hangman/hangman_play.py`    | 행맨 게임 진행        |
 | `hangman/hangman_ranking.py` | 행맨 랭킹           |
-| `lotto/app.py`               | 로또 메뉴 및 흐름      |
-| `lotto/lotto_play.py`        | 로또 게임 시작 흐름     |
+| `lotto/app.py`               | 로또 메뉴 및 전체 흐름      |
 | `lotto/lotto_auto.py`        | 자동 번호 생성        |
 | `lotto/lotto_manual.py`      | 수동 번호 입력        |
+| `lotto/lotto_semi_auto.py`   | 반자동 번호 생성        |
 | `lotto/lotto_records.py`     | 로또 기록 관리        |
 
 ---
